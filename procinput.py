@@ -2,7 +2,7 @@
 
 import doors
 
-def process(func,ch):
+def process(ch):
     if ch in [1,2,3]:
         doors.opendoor(ch)
     else:
