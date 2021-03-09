@@ -21,21 +21,21 @@ class Door():
 def classify(d):
 
     if d.enemydif + d.enemysize + d.lootamount + d.lootquality > 390:
-        #very very good opinion
+        opinion = random.choice(["breathtaking","incredible","phenomenal","mindblowing","absurd","spectacular","mind-boggling","supreme","awe-inspiring","extraordinary"])
     elif d.enemydif + d.enemysize + d.lootamount + d.lootquality > 350:
-        #very good opinion
+        opinion = random.choice(["fantastic","astonishing","dazzling","tremendous","stunning","marvellous","magnificent","remarkable","wonderful","impressive"])
     elif d.enemydif + d.enemysize + d.lootamount + d.lootquality > 300:
-        # pretty good opinion
+        opinion = random.choice(["great","exceptional","special","grand","majestic","beautiful","glorious","brilliant","spiffing","splendid"])
     elif d.enemydif + d.enemysize + d.lootamount + d.lootquality > 200:
-        # a bit above average
+        opinion = random.choice(["fine","quaint","admirable","quality","acceptable","robust","satisfactory","pleasing","comely","pretty"])
     elif d.enemydif + d.enemysize + d.lootamount + d.lootquality > 150:
-        # a bit below average
+        opinion = random.choice(["tolerable","uninspired","respectable","passable","adequate","goodish","unexcpetional","run-of-the-mill","bog-standard","cromulent"])
     elif d.enemydif + d.enemysize + d.lootamount + d.lootquality > 100:
-        # fairly bad
+        opinion = random.choice(["mediocre","inferior","amateurish","inane","vacuous","lesser","lowly","second-rate","faulty","unsound"])
     elif d.enemydif + d.enemysize + d.lootamount + d.lootquality > 50:
-        # very bad
+        opinion = random.choice(["crummy","malformed","bad","poor","dreadful","lousy","disagreeable","dire","unpleasant","awful"])
     else:
-        #terrible
+        opinion = random.choice(["abhorrent","godawful","deplorable","barbaric","wretched","appaliling","ghastly","grisly","cataclysmic","abysmal"])
 
     if d.enemysize > 90 or d.lootamount > 90:
         # door size huge
