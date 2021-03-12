@@ -1,3 +1,5 @@
+import random
+
 
 def generatedoors():
     global currentdoors
@@ -7,21 +9,18 @@ def generatedoors():
 def opendoor(ch):
     print(currentdoors[ch])
 
-
-material
-
-
 class Door():
-    self.enemydif
-    self.enemysize
-    self.lootamount
-    self.lootquality
+    def __init__(self):
+        self.enemydif
+        self.enemysize
+        self.lootamount
+        self.lootquality
 
 
 def classify(d):
 
     if d.enemydif + d.enemysize + d.lootamount + d.lootquality > 390:
-        opinion = random.choice(["breathtaking","incredible","phenomenal","mindblowing","absurd","spectacular","mind-boggling","supreme","awe-inspiring","extraordinary"])
+        opinion = random.choice(["breathtaking","incredible","phenomenal","mind-blowing","absurd","spectacular","mind-boggling","supreme","awe-inspiring","extraordinary"])
     elif d.enemydif + d.enemysize + d.lootamount + d.lootquality > 350:
         opinion = random.choice(["fantastic","astonishing","dazzling","tremendous","stunning","marvellous","magnificent","remarkable","wonderful","impressive"])
     elif d.enemydif + d.enemysize + d.lootamount + d.lootquality > 300:
@@ -29,47 +28,48 @@ def classify(d):
     elif d.enemydif + d.enemysize + d.lootamount + d.lootquality > 200:
         opinion = random.choice(["fine","quaint","admirable","quality","acceptable","robust","satisfactory","pleasing","comely","pretty"])
     elif d.enemydif + d.enemysize + d.lootamount + d.lootquality > 150:
-        opinion = random.choice(["tolerable","uninspired","respectable","passable","adequate","goodish","unexcpetional","run-of-the-mill","bog-standard","cromulent"])
+        opinion = random.choice(["tolerable","uninspired","respectable","passable","adequate","goodish","unexceptional","run-of-the-mill","bog-standard","cromulent"])
     elif d.enemydif + d.enemysize + d.lootamount + d.lootquality > 100:
         opinion = random.choice(["mediocre","inferior","amateurish","inane","vacuous","lesser","lowly","second-rate","faulty","unsound"])
     elif d.enemydif + d.enemysize + d.lootamount + d.lootquality > 50:
         opinion = random.choice(["crummy","malformed","bad","poor","dreadful","lousy","disagreeable","dire","unpleasant","awful"])
     else:
-        opinion = random.choice(["abhorrent","godawful","deplorable","barbaric","wretched","appaliling","ghastly","grisly","cataclysmic","abysmal"])
+        opinion = random.choice(["abhorrent","godawful","deplorable","barbaric","wretched","appalling","ghastly","grisly","cataclysmic","abysmal"])
 
     if d.enemysize > 90 or d.lootamount > 90:
-        # door size huge
+        size = random.choice(['titanic',"colossal","gargantuan","immense","stupendous","enormous","astronomical","cosmic","Herculean","ginormous"])# door size huge
     elif d.enemysize > 75 or d.lootamount > 75:
-        # door size large
+        size = random.choice(["giant","vast","substantial","huge","massive","immense","towering","monumental","mighty","towering"])# door size large
     elif d.enemysize > 50 or d.lootamount > 50:
-        #door size average
+        size = random.choice(["midsize","average","medium","moderate","regular"]) #door size average
     elif d.enemysize > 25 or d.lootamount > 25:
-        # door size small
+        size = random.choice(["little","small","short","cramped","compact","squat"]) # door size small
     else:
-        # door size tiny
+        size = random.choice(["miniature","measly","tiny","minuscule","puny","pathetic"])# door size tiny
 
     if d.enemydif > 90 or (d.enemydif > 70 and d.lootquality < 40 and d.lootamount < 40) or (d.enemysize < 20 and d.lootquality > 75): # door should be heavy/thick if it has a very dangerous creature (with or without loot), if it has a dangerous creature without loot, or if it has a weak creature with high quality loot
-    
+        shape = random.choice(["heavy","thick","hulking","dense","bulky"])
     elif (d.enemydif < 20 and d.enemysize > 70) or ((d.lootamount+d.lootquality) > 150 and (d.enemydif+d.enemysize) < 50): # the door for lots of little enemies or one big friendly one should be thin/light, and if it is a room with lots of loot and almost no enemies it should also be thin
-    
+        shape = random.choice(["paper-thin","slight","fine","papery","slender","gossamer","sheer"])
     else: #average-shaped door
+        shape = random.choice(["average-thickness","scraggy","slim"])
     
 
     if d.lootquality < 25: # in order for doors to be in good condition with low loot quality, they need to have a high enemysize with a low enemydif
         if d.enemysize - d.enemydif > 50:
-            # good condition
+            condition = # good condition
         else:
-            # bad condition
+            condition = random.choice(["beat-up","mangled","dismal","shabby","busted","broken","dilapidated","rough","seedy","shredded","crude","fragmented"]) # bad condition
     elif d.lootquality < 75: #about average loot quality, so it will be good unless enemydif is greater than enemysize
         if d.enemydif > d.enemysize: 
-            # bad condition
+            condition = random.choice(["beat-up","mangled","dismal","shabby","busted","broken","dilapidated","rough","seedy","shredded","crude","fragmented"])# bad condition
         else:
-            # good condition
+            conditon =# good condition
     else: # this is pretty high quality loot, so will be good condition unless there is some monster issue in there
         if d.enemydif + d.enemysize > 150:
-            # bad condition
+            condition = random.choice(["beat-up","mangled","dismal","shabby","busted","broken","dilapidated","rough","seedy","shredded","crude","fragmented"])# bad condition
         else:
-            # good condition
+            condition = # good condition
      
     #large enemysize, high lootamount + low lootquality, very high enemydif + (low lootquality/lootamount) - all of these lead to high age. 
     if d.enemysize + d.enemydif > 150 and d.lootquality < 40 and d.lootamount > d.lootquality: # The perfect storm for a very, very old door
