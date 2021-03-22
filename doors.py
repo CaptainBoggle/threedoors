@@ -246,10 +246,11 @@ def generatemaths(size, dif, livesleft):
                 lives = lives - 1
 
     elif dif == 8:
-        for i in range(size): # prime factorisation
-            num1 = random.randint(0, 500)
-            sol = int(num1)
-            if int(input("What is " + str(num1) + " + " + str(num2) + "?\n")) == int(sol):
+        for i in range(size): # indices
+            num1 = random.randint(1, 12)
+            num2 = random.randint(0, 15)
+            sol = int(num1**num2)
+            if int(input("What is " + str(num1) + " to the power of " + str(num2) + "?\n")) == int(sol):
                 print("Correct!\n")
             else:
                 print("Wrong!\n")
