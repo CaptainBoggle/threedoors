@@ -1,5 +1,5 @@
 import random
-
+import math
 
 
 
@@ -108,11 +108,40 @@ def classify(d):
     return desctext
 
 
+def generatemaths(size,dif,livesleft):
+
+    if dif == 1:
+        for i in range(size):
+            num1 = random.randint(0,100)
+            num2 = random.randint(0,100)
+            sol = int(num1 + num2)
+            if int(input("What is "+str(num1)+" + "+str(num2)+"?\n")) == str(sol):
+                print("Correct!\n")
+            else:
+
+
+
+
+
+
+    return (livesleft)
 
 def generatedoors():
     global currentdoors
-    currentdoors = [Door(1),Door(2),Door(2)]
+    currentdoors = [Door(0),Door(1),Door(2)]
     for door in currentdoors:
         print(door.doordesc)
 
-for i in range(100000): generatedoors()
+def rundoor(doorindex,modifiers):
+    ltamnt = currentdoors[doorindex].lootamount
+    ltqual = currentdoors[doorindex].lootquality
+    edif = currentdoors[doorindex].enemydif
+    esize = currentdoors[doorindex].enemysize
+
+    generatemaths(math.floor(esize-modifiers[0])+1,math.floor(edif-modifiers[1])+1)
+
+
+
+
+
+
