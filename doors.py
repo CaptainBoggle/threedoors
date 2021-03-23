@@ -190,8 +190,8 @@ def generatemaths(size, dif, livesleft):
             num1 = random.randint(1, 100)
             num2 = random.randint(1, 10)
             while num1 % num2 != 0:
-                num1 = random.randint(0, 100)
-                num2 = random.randint(0, 10)
+                num1 = random.randint(1, 100)
+                num2 = random.randint(1, 10)
 
             sol = int(num1 / num2)
             if int(input("What is " + str(num1) + " / " + str(num2) + "?\n")) == int(sol):
@@ -202,8 +202,8 @@ def generatemaths(size, dif, livesleft):
 
     elif dif == 4:
         for i in range(size): # Greatest common denominator
-            num1 = random.randint(0, 500)
-            num2 = random.randint(0, 500)
+            num1 = random.randint(0, 200)
+            num2 = random.randint(0, 200)
             sol = math.gcd(num1, num2)
             if int(input("What is the greatest common denominator of " + str(num1) + " and " + str(num2) + "?\n")) == int(sol):
                 print("Correct!\n")
@@ -329,7 +329,7 @@ def rundoor(doorindex, modifiers, livesleft):
     if lives <= 0:
         endgame()
     else:
-        return generateloot(math.floor((ltamnt + modifiers[2])) + 1, math.floor((ltqual + modifiers[3])/10), modifiers,livesleft)
+        return generateloot(math.floor((ltamnt + modifiers[2])/10) + 1, math.floor((ltqual + modifiers[3])/10), modifiers,livesleft)
 
 
 if __name__ == "__main__":
