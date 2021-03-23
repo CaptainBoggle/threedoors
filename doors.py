@@ -247,8 +247,8 @@ def generatemaths(size, dif, livesleft):
 
     elif dif == 8:
         for i in range(size): # indices
-            num1 = random.randint(1, 12)
-            num2 = random.randint(0, 15)
+            num1 = random.randint(1, 11)
+            num2 = random.randint(0,5)
             sol = int(num1**num2)
             if int(input("What is " + str(num1) + " to the power of " + str(num2) + "?\n")) == int(sol):
                 print("Correct!\n")
@@ -297,8 +297,25 @@ def generatedoors():
 def endgame():
     exit()
 
+
+def generateloot(amount, qual, mod,lives):
+    choicedict = {0:"Power!",1:"Knowledge!",2:"Sight!",3:"Luck!"}
+    for i in range(amount):
+        modchoice = random.randrange(5)
+        if modchoice == 4:
+            lives += (math.floor(qual/10)+1)
+            print("You healed "+str((math.floor(qual/10)+1))+" lives!\n")
+        else:
+            mod[modchoice] += (math.floor(qual)+1)
+            print("You gained "+str((math.floor(qual)+1))+" "+choicedict[modchoice])
+
+    return [mod, lives]
+
+
+
 def rundoor(doorindex, modifiers, livesleft):
     lives = livesleft
+    results = []
     global currentdoors
     ltamnt = currentdoors[doorindex].lootamount
     ltqual = currentdoors[doorindex].lootquality
@@ -307,10 +324,14 @@ def rundoor(doorindex, modifiers, livesleft):
 
     if esize-modifiers[0] < 0 or edif - modifiers[1] < 0:
         print("This room appears to be free of any monsters...\n")
-    else: lives = generatemaths(math.floor(esize - modifiers[0]) + 1, math.floor(edif - modifiers[1]) + 1, lives)
+    else: lives = generatemaths(math.floor((esize - modifiers[0])/10) + 1, math.floor((edif - modifiers[1])/10) + 1, lives)
 
     if lives <= 0:
         endgame()
     else:
-        modifiers = generateloot(math.floor(ltamnt - modifiers[2]) + 1, math.floor(ltqual - modifiers[3]))
+        return generateloot(math.floor((ltamnt + modifiers[2])/10) + 1, math.floor(ltqual + modifiers[3]), modifiers,livesleft)
 
+
+if __name__ == "__main__":
+    generatedoors()
+    rundoor(int(input("door num pls: "))-1,[0,0,0,0],30)
