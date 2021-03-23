@@ -329,7 +329,7 @@ def rundoor(doorindex, modifiers, livesleft):
     if lives <= 0:
         endgame()
     else:
-        return generateloot(math.floor((ltamnt + modifiers[2])/10) + 1, math.floor(ltqual + modifiers[3]), modifiers,livesleft)
+        return generateloot(math.floor((ltamnt + modifiers[2])) + 1, math.floor((ltqual + modifiers[3])/10), modifiers,livesleft)
 
 
 if __name__ == "__main__":
