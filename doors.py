@@ -104,7 +104,7 @@ def classify(d):
     elif d.enemysize < 40 and (d.enemydif - d.lootquality) > 50:  # very dangerous, small creature, or just loot-poor
         age = str(random.randint(750, 1250)) + " year-old"  # 750<door<1.25k years
     elif d.lootquality + d.lootamount > 125 > d.enemysize + d.enemydif:  # near-unguarded room with great loot? must be very young
-        age = str(random.randint(1, 10)) + " year-old"  # 1<door<10 years\
+        age = str(random.randint(1, 10)) + " year-old"  # 1<door<10 years
     else:  # could be anything... but it will be a bit old
         age = str(random.randint(500, 1750)) + " year-old"  # 500<door<1.75k
 
@@ -172,6 +172,7 @@ def generatemaths(size, dif, livesleft):
                 print("Correct!\n")
             else:
                 print("Wrong!\n")
+                print(str(sol))
                 lives = lives - 1
 
     elif dif == 2:
@@ -183,14 +184,15 @@ def generatemaths(size, dif, livesleft):
                 print("Correct!\n")
             else:
                 print("Wrong!\n")
+                print(str(sol))
                 lives = lives - 1
 
     elif dif == 3:
         for i in range(size): # division
-            num1 = random.randint(1, 100)
+            num1 = random.randint(1, 30)
             num2 = random.randint(1, 10)
             while num1 % num2 != 0:
-                num1 = random.randint(1, 100)
+                num1 = random.randint(1, 30)
                 num2 = random.randint(1, 10)
 
             sol = int(num1 / num2)
@@ -198,17 +200,19 @@ def generatemaths(size, dif, livesleft):
                 print("Correct!\n")
             else:
                 print("Wrong!\n")
+                print(str(sol))
                 lives = lives - 1
 
     elif dif == 4:
         for i in range(size): # Greatest common denominator
-            num1 = random.randint(0, 200)
-            num2 = random.randint(0, 200)
+            num1 = random.randint(1, 100)
+            num2 = random.randint(1, 100)
             sol = math.gcd(num1, num2)
             if int(input("What is the greatest common denominator of " + str(num1) + " and " + str(num2) + "?\n")) == int(sol):
                 print("Correct!\n")
             else:
                 print("Wrong!\n")
+                print(str(sol))
                 lives = lives - 1
 
     elif dif == 5:
@@ -221,6 +225,7 @@ def generatemaths(size, dif, livesleft):
                 print("Correct!\n")
             else:
                 print("Wrong!\n")
+                print(str(sol))
                 lives = lives - 1
 
     elif dif == 6:
@@ -232,28 +237,34 @@ def generatemaths(size, dif, livesleft):
                 print("Correct!\n")
             else:
                 print("Wrong!\n")
+                print(str(sol))
                 lives = lives - 1
 
     elif dif == 7:
         for i in range(size): # hard division
-            num1 = random.randint(-100, 100)
+            num1 = random.randint(-500, 500)
             num2 = random.randint(-11, 11)
+            while num1 % num2 != 0:
+                num1 = random.randint(-500, 500)
+                num2 = random.randint(-11, 11)
             sol = int(num1 + num2)
             if int(input("What is " + str(num1) + " / " + str(num2) + "?\n")) == int(sol):
                 print("Correct!\n")
             else:
                 print("Wrong!\n")
+                print(str(sol))
                 lives = lives - 1
 
     elif dif == 8:
         for i in range(size): # indices
-            num1 = random.randint(1, 11)
-            num2 = random.randint(0,5)
+            num1 = random.randint(1, 9)
+            num2 = random.randint(0,4)
             sol = int(num1**num2)
             if int(input("What is " + str(num1) + " to the power of " + str(num2) + "?\n")) == int(sol):
                 print("Correct!\n")
             else:
                 print("Wrong!\n")
+                print(str(sol))
                 lives = lives - 1
 
     elif dif == 9:
@@ -261,7 +272,7 @@ def generatemaths(size, dif, livesleft):
             num1 = random.randint(-30, 30)
             num2 = random.randint(-30, 30)
             discrim = (num1**2)-(4*num2)
-            while discrim != math.isqrt(discrim**2):
+            while discrim != (math.isqrt(discrim)**2):
                 num1 = random.randint(-30, 30)
                 num2 = random.randint(-30, 30)
                 discrim = (num1 ** 2) - (4 * num2)
@@ -272,16 +283,18 @@ def generatemaths(size, dif, livesleft):
                 print("Correct!\n")
             else:
                 print("Wrong!\n")
+                print(str(sol))
                 lives = lives - 1
 
     else:
         for i in range(size): # hexadecimal conversion
-            num1 = random.randint(0, 65535)
+            num1 = random.randint(0, 255)
             sol = format(num1, 'x')
             if str(input("What is " + str(num1) + " written in hexadecimal?\n0x")).lower() == str(sol).lower():
                 print("Correct!\n")
             else:
                 print("Wrong!\n")
+                print(str(sol))
                 lives = lives - 1
 
 
