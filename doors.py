@@ -294,8 +294,11 @@ def generatedoors():
     for door in currentdoors:
         print(door.doordesc)
 
+def endgame():
+    exit()
 
 def rundoor(doorindex, modifiers, livesleft):
+    lives = livesleft
     global currentdoors
     ltamnt = currentdoors[doorindex].lootamount
     ltqual = currentdoors[doorindex].lootquality
@@ -304,4 +307,10 @@ def rundoor(doorindex, modifiers, livesleft):
 
     if esize-modifiers[0] < 0 or edif - modifiers[1] < 0:
         print("This room appears to be free of any monsters...\n")
-    else: generatemaths(math.floor(esize - modifiers[0]) + 1, math.floor(edif - modifiers[1]) + 1, livesleft)
+    else: lives = generatemaths(math.floor(esize - modifiers[0]) + 1, math.floor(edif - modifiers[1]) + 1, lives
+
+    if lives <= 0:
+        endgame()
+    else:
+        modifiers = generateloot(math.floor(ltamnt - modifiers[2]) + 1, math.floor(ltqual - modifiers[3])
+
