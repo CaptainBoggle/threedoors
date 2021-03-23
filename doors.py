@@ -258,12 +258,12 @@ def generatemaths(size, dif, livesleft):
 
     elif dif == 9:
         for i in range(size): # monic quadratic roots
-            num1 = random.randint(1, 30)
-            num2 = random.randint(1, 30)
+            num1 = random.randint(-30, 30)
+            num2 = random.randint(-30, 30)
             discrim = (num1**2)-(4*num2)
-            while discrim != math.isqrt(discrim) ** 2:
-                num1 = random.randint(1, 50)
-                num2 = random.randint(1, 50)
+            while discrim != math.isqrt(discrim**2):
+                num1 = random.randint(-30, 30)
+                num2 = random.randint(-30, 30)
                 discrim = (num1 ** 2) - (4 * num2)
             roots = [(((-num2) + math.isqrt(discrim))/2), (((-num2) - math.isqrt(discrim))/2)]
             roots.sort()
