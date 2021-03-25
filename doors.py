@@ -1,5 +1,35 @@
 import random
 import math
+import os
+
+def intput(inpt):
+    var = True
+    while True:
+        try:
+            res = int(input(inpt))
+
+        except ValueError:
+            print("Invalid input, please enter an integer!")
+            var = False
+
+        if var:
+            return res
+
+def strinput(inpt):
+    var = True
+    while True:
+        try:
+            res = str(input(inpt))
+
+        except ValueError:
+            print("Invalid input, please enter valid hexadecimal!!")
+            var = False
+
+        if var:
+            return res
+
+
+
 
 
 class Door:
@@ -11,6 +41,8 @@ class Door:
         self.lootquality = random.randint(1, 100)
         self.doordesc = classify(self)
 
+def clear():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 def classify(d):
     if d.enemydif + d.enemysize + d.lootamount + d.lootquality > 390:
@@ -168,22 +200,24 @@ def generatemaths(size, dif, livesleft):
             num1 = random.randint(0, 100)
             num2 = random.randint(0, 100)
             sol = int(num1 + num2)
-            if int(input("What is " + str(num1) + " + " + str(num2) + "? ")) == int(sol):
+            if int(intput("What is " + str(num1) + " + " + str(num2) + "? ")) == int(sol):
                 print("Correct!\n")
             else:
                 print("Wrong! The correct answer was " + str(sol) + "\n")
                 lives = lives - 1
+            print("You now have "+str(lives)+" lives left.\n")
 
     elif dif == 2:
         for i in range(size):  # multiplication
             num1 = random.randint(0, 11)
             num2 = random.randint(0, 13)
             sol = int(num1 * num2)
-            if int(input("What is " + str(num1) + " * " + str(num2) + "? ")) == int(sol):
+            if int(intput("What is " + str(num1) + " * " + str(num2) + "? ")) == int(sol):
                 print("Correct!\n")
             else:
                 print("Wrong! The correct answer was " + str(sol) + "\n")
                 lives = lives - 1
+            print("You now have " + str(lives) + " lives left.\n")
 
     elif dif == 3:
         for i in range(size):  # division
@@ -194,23 +228,26 @@ def generatemaths(size, dif, livesleft):
                 num2 = random.randint(1, 10)
 
             sol = int(num1 / num2)
-            if int(input("What is " + str(num1) + " / " + str(num2) + "? ")) == int(sol):
+            if int(intput("What is " + str(num1) + " / " + str(num2) + "? ")) == int(sol):
                 print("Correct!\n")
             else:
                 print("Wrong! The correct answer was " + str(sol) + "\n")
                 lives = lives - 1
+            print("You now have " + str(lives) + " lives left.\n")
 
     elif dif == 4:
         for i in range(size):  # Greatest common denominator
             num1 = random.randint(1, 100)
             num2 = random.randint(1, 100)
             sol = math.gcd(num1, num2)
-            if int(input("What is the greatest common denominator of " + str(num1) + " and " + str(num2) + "? ")) == int(
+            if int(intput(
+                    "What is the greatest common denominator of " + str(num1) + " and " + str(num2) + "? ")) == int(
                     sol):
                 print("Correct!\n")
             else:
                 print("Wrong! The correct answer was " + str(sol) + "\n")
                 lives = lives - 1
+            print("You now have " + str(lives) + " lives left.\n")
 
     elif dif == 5:
         for i in range(size):  # find the discriminant
@@ -218,80 +255,83 @@ def generatemaths(size, dif, livesleft):
             num2 = random.randint(-30, 30)
             num3 = random.randint(-10, 10)
             sol = int((num2 * num2) - (4 * num1 * num3))
-            if int(input("What is the discriminant of " + str(num1) + "x^2 + " + str(num2) + "x + " + str(
+            if int(intput("What is the discriminant of " + str(num1) + "x^2 + " + str(num2) + "x + " + str(
                     num3) + "? ")) == int(sol):
                 print("Correct!\n")
             else:
                 print("Wrong! The correct answer was " + str(sol) + "\n")
                 lives = lives - 1
+            print("You now have " + str(lives) + " lives left.\n")
+
 
     elif dif == 6:
         for i in range(size):  # hard multiplication
             num1 = random.randint(-25, 25)
             num2 = random.randint(-125, 125)
             sol = int(num1 * num2)
-            if int(input("What is " + str(num1) + " * " + str(num2) + "? ")) == int(sol):
+            if int(intput("What is " + str(num1) + " * " + str(num2) + "? ")) == int(sol):
                 print("Correct!\n")
             else:
                 print("Wrong! The correct answer was " + str(sol) + "\n")
                 lives = lives - 1
+            print("You now have " + str(lives) + " lives left.\n")
 
     elif dif == 7:
         for i in range(size):  # hard division
-            num1 = random.randint(-500, 500)
-            num2 = random.randint(-11, 11)
-            while num2 == 0 or num1 == 0:
-                num1 = random.randint(-500, 500)
-                num2 = random.randint(-11, 11)
+            num1 = random.randint(1, 1000)
+            num2 = random.randint(11, 11)
             while num1 % num2 != 0:
-                num1 = random.randint(-500, 500)
-                num2 = random.randint(-11, 11)
+                num1 = random.randint(1, 1000)
+                num2 = random.randint(1, 11)
             sol = int(num1 + num2)
-            if int(input("What is " + str(num1) + " / " + str(num2) + "? ")) == int(sol):
+            if int(intput("What is " + str(num1) + " / " + str(num2) + "? ")) == int(sol):
                 print("Correct!\n")
             else:
                 print("Wrong! The correct answer was " + str(sol) + "\n")
                 lives = lives - 1
+            print("You now have " + str(lives) + " lives left.\n")
 
     elif dif == 8:
         for i in range(size):  # indices
             num1 = random.randint(1, 9)
             num2 = random.randint(0, 4)
             sol = int(num1 ** num2)
-            if int(input("What is " + str(num1) + " to the power of " + str(num2) + "? ")) == int(sol):
+            if int(intput("What is " + str(num1) + " to the power of " + str(num2) + "? ")) == int(sol):
                 print("Correct!\n")
             else:
                 print("Wrong! The correct answer was " + str(sol) + "\n")
                 lives = lives - 1
+            print("You now have " + str(lives) + " lives left.\n")
 
     elif dif == 9:
         for i in range(size):  # binary conversion
             num1 = random.randint(0, 1024)
             sol = format(num1, 'b')
-            if str(input("What is " + str(num1) + " written in binary?\n0b")).lower() == str(sol).lower():
+            if int(intput("What is " + str(num1) + " written in binary?\n0b")).lower() == str(sol).lower():
                 print("Correct!\n")
             else:
                 print("Wrong! The correct answer was " + str(sol) + "\n")
                 lives = lives - 1
+            print("You now have " + str(lives) + " lives left.\n")
 
     else:
         for i in range(size):  # hexadecimal conversion
             num1 = random.randint(0, 255)
             sol = format(num1, 'x')
-            if str(input("What is " + str(num1) + " written in hexadecimal?\n0x")).lower() == str(sol).lower():
+            if str(strinput("What is " + str(num1) + " written in hexadecimal?\n0x")).lower() == str(sol).lower():
                 print("Correct!\n")
             else:
                 print("Wrong! The correct answer was " + str(sol) + "\n")
                 lives = lives - 1
-
+            print("You now have " + str(lives) + " lives left.\n")
+    clear()
     return lives
 
 
 def generatedoors():
     global currentdoors
     currentdoors = [Door(0), Door(1), Door(2)]
-    for door in currentdoors:
-        print(door.doordesc)
+    return currentdoors
 
 
 def endgame():
@@ -299,9 +339,10 @@ def endgame():
 
 
 def generateloot(amount, qual, mod, lives):
+    clear()
     print("Now lets take a look at that loot...")
     choicedict = {0: "Power!", 1: "Knowledge!", 2: "Sight!", 3: "Luck!"}
-    for i in range(amount):
+    for i in range(math.floor(amount)):
         modchoice = random.randrange(5)
         if modchoice == 4 and lives <= 10 - math.floor(qual / 10):
             lives += (math.floor(qual / 10) + 1)
@@ -312,10 +353,13 @@ def generateloot(amount, qual, mod, lives):
             mod[modchoice] += (math.floor(qual) + 1)
             print("You gained " + str((math.floor(qual) + 1)) + " " + choicedict[modchoice])
 
+    print("\n")
+    print("You now have "+str(lives)+" lives, "+str(mod[0])+" power, "+str(mod[1])+" knowledge, "+str(mod[0])+" sight, and "+str(mod[0])+" luck.")
     return [mod, lives]
 
 
 def rundoor(doorindex, modifiers, livesleft):
+    clear()
     lives = livesleft
     results = []
     global currentdoors
@@ -334,9 +378,27 @@ def rundoor(doorindex, modifiers, livesleft):
         endgame()
     else:
         return generateloot(math.floor((ltamnt + modifiers[2]) / 10) + 1, math.floor((ltqual + modifiers[3]) / 10),
-                            modifiers, livesleft)
+                            modifiers, lives)
 
+def mainfunction():
+    # init: print title, clear, print description, clear, print have fun + copyright, clear, first door,  proceed to main gameplay loop
+    mods = [0, 0, 0, 0]
+    history = []
+    lives = 10
+    #main loop
+    while True:
+        doors = generatedoors()
+        print("\n")
+        print("You notice that at the back of the room, there are three doors, each beckoning you in a different way...\nDespite this, you may only choose one, so which will it be?")
+        print("Will you choose the first door, the "+doors[0].doordesc+"?")
+        print("Or will you enter the second door, the "+doors[1].doordesc+"?")
+        print("Or perhaps the third door, the "+doors[2].doordesc+"?")
+        print("Please enter 1, 2, or 3. Prepare for the worst... Or the best!")
+        chce=int(intput("Choice: "))
+        result = rundoor(chce,mods,lives)
+        history.append(chce)
+        mods = result[0]
+        lives = result[1]
 
-if __name__ == "__main__":
-    generatedoors()
-    rundoor(int(input("door num pls: ")) - 1, [0, 0, 0, 0], 30)
+if __name__ == '__main__':
+    mainfunction()
