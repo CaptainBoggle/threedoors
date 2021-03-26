@@ -1,10 +1,11 @@
 import random
 import math
 import os
-
+import turtle
+history = []
 def intput(inpt):
-    var = True
     while True:
+        var = True
         try:
             res = int(input(inpt))
 
@@ -16,8 +17,8 @@ def intput(inpt):
             return res
 
 def strinput(inpt):
-    var = True
     while True:
+        var = True
         try:
             res = str(input(inpt))
 
@@ -233,7 +234,7 @@ def generatemaths(size, dif, livesleft):
             else:
                 print("Wrong! The correct answer was " + str(sol) + "\n")
                 lives = lives - 1
-            print("You now have " + str(lives) + " lives left.\n")
+            print("You have " + str(lives) + " lives left.\n")
 
     elif dif == 4:
         for i in range(size):  # Greatest common denominator
@@ -283,7 +284,7 @@ def generatemaths(size, dif, livesleft):
             while num1 % num2 != 0:
                 num1 = random.randint(1, 1000)
                 num2 = random.randint(1, 11)
-            sol = int(num1 + num2)
+            sol = int(num1 / num2)
             if int(intput("What is " + str(num1) + " / " + str(num2) + "? ")) == int(sol):
                 print("Correct!\n")
             else:
@@ -307,7 +308,7 @@ def generatemaths(size, dif, livesleft):
         for i in range(size):  # binary conversion
             num1 = random.randint(0, 1024)
             sol = format(num1, 'b')
-            if int(intput("What is " + str(num1) + " written in binary?\n0b")).lower() == str(sol).lower():
+            if int(intput("What is " + str(num1) + " written in binary?\n0b")) == sol:
                 print("Correct!\n")
             else:
                 print("Wrong! The correct answer was " + str(sol) + "\n")
@@ -329,13 +330,12 @@ def generatemaths(size, dif, livesleft):
 
 
 def generatedoors():
-    global currentdoors
     currentdoors = [Door(0), Door(1), Door(2)]
     return currentdoors
 
 
-def endgame():
-    exit()
+
+
 
 
 def generateloot(amount, qual, mod, lives):
@@ -350,19 +350,62 @@ def generateloot(amount, qual, mod, lives):
         else:
             if modchoice == 4:
                 modchoice = random.randrange(4)
-            mod[modchoice] += (math.floor(qual) + 1)
-            print("You gained " + str((math.floor(qual) + 1)) + " " + choicedict[modchoice])
+            mod[modchoice] += (math.floor(qual/5) + 1)
+            print("You gained " + str((math.floor(qual/5) + 1)) + " " + choicedict[modchoice])
+    for i in range(len(mod)):
+        if mod[i] >= 90:
+            mod[i] = 90
 
     print("\n")
     print("You now have "+str(lives)+" lives, "+str(mod[0])+" power, "+str(mod[1])+" knowledge, "+str(mod[0])+" sight, and "+str(mod[0])+" luck.")
     return [mod, lives]
 
 
-def rundoor(doorindex, modifiers, livesleft):
+def endgame(his):
+    history =his
+    turtle.speed(20)
+    turtle.pd()
+    clear()
+    print(history)
+    print("You have died!")
+    for i in history:
+        if i == 1:
+            turtle.seth(135)
+            turtle.forward(20)
+            turtle.back(20)
+            turtle.seth(90)
+            turtle.forward(12)
+            turtle.back(12)
+            turtle.seth(45)
+            turtle.forward(20)
+
+        elif i == 2:
+            turtle.seth(135)
+            turtle.forward(20)
+            turtle.back(20)
+            turtle.seth(45)
+            turtle.forward(20)
+            turtle.back(20)
+            turtle.seth(90)
+            turtle.forward(12)
+
+        else:
+            turtle.seth(45)
+            turtle.forward(20)
+            turtle.back(20)
+            turtle.seth(90)
+            turtle.forward(12)
+            turtle.back(12)
+            turtle.seth(135)
+            turtle.forward(20)
+
+
+
+def rundoor(doorindex, modifiers, livesleft,currentdoors,his):
+    global history
     clear()
     lives = livesleft
     results = []
-    global currentdoors
     ltamnt = currentdoors[doorindex].lootamount
     ltqual = currentdoors[doorindex].lootquality
     edif = currentdoors[doorindex].enemydif
@@ -375,7 +418,7 @@ def rundoor(doorindex, modifiers, livesleft):
                               lives)
 
     if lives <= 0:
-        endgame()
+        endgame(his)
     else:
         return generateloot(math.floor((ltamnt + modifiers[2]) / 10) + 1, math.floor((ltqual + modifiers[3]) / 10),
                             modifiers, lives)
@@ -395,10 +438,16 @@ def mainfunction():
         print("Or perhaps the third door, the "+doors[2].doordesc+"?")
         print("Please enter 1, 2, or 3. Prepare for the worst... Or the best!")
         chce=int(intput("Choice: "))
-        result = rundoor(chce,mods,lives)
+        result = rundoor(chce-1,mods,lives,doors,history)
         history.append(chce)
         mods = result[0]
+        if mods[2] >= 60:
+            mods[2] = 60
+        if mods[3] >= 60:
+            mods[3] = 60
         lives = result[1]
+        for i in doors:
+            del i
 
 if __name__ == '__main__':
     mainfunction()
