@@ -3,7 +3,7 @@ import math
 import os
 import turtle
 history = []
-def intput(inpt):
+def intput(inpt): # Input sanitisation for integers
     while True:
         var = True
         try:
@@ -16,7 +16,7 @@ def intput(inpt):
         if var:
             return res
 
-def strinput(inpt):
+def strinput(inpt): # input sanitisation for strings
     while True:
         var = True
         try:
@@ -33,7 +33,7 @@ def strinput(inpt):
 
 
 
-class Door:
+class Door: # door class, generates random stats when created
     def __init__(self, doornum):
         self.doornum = doornum
         self.enemydif = random.randint(1, 100)
@@ -43,9 +43,9 @@ class Door:
         self.doordesc = classify(self)
 
 def clear():
-    os.system('cls' if os.name == 'nt' else 'clear')
+    os.system('cls' if os.name == 'nt' else 'clear') # function to wipe the screen
 
-def classify(d):
+def classify(d): # The heart of this program, gives a description to the randomly generated doors based purely on their stats. I may have spent too much time coming up with these words...
     if d.enemydif + d.enemysize + d.lootamount + d.lootquality > 390:
         opinion = random.choice(
             ["breathtaking", "incredible", "phenomenal", "mind-blowing", "absurd", "spectacular", "mind-boggling",
@@ -329,7 +329,7 @@ def generatemaths(size, dif, livesleft):
     return lives
 
 
-def generatedoors():
+def generatedoors(): # create three new doors for the player to choose from
     currentdoors = [Door(0), Door(1), Door(2)]
     return currentdoors
 
@@ -338,7 +338,7 @@ def generatedoors():
 
 
 
-def generateloot(amount, qual, mod, lives):
+def generateloot(amount, qual, mod, lives): # generate some loot after the battle
     clear()
     print("Now lets take a look at that loot...")
     choicedict = {0: "Power!", 1: "Knowledge!", 2: "Sight!", 3: "Luck!"}
@@ -361,7 +361,7 @@ def generateloot(amount, qual, mod, lives):
     return [mod, lives]
 
 
-def endgame(his):
+def endgame(his): # end the game and draw out the map
     history =his
     turtle.speed(20)
     turtle.pd()
@@ -401,7 +401,7 @@ def endgame(his):
 
 
 
-def rundoor(doorindex, modifiers, livesleft,currentdoors,his):
+def rundoor(doorindex, modifiers, livesleft,currentdoors,his): # run the door
     global history
     clear()
     lives = livesleft
@@ -424,10 +424,16 @@ def rundoor(doorindex, modifiers, livesleft,currentdoors,his):
                             modifiers, lives)
 
 def mainfunction():
-    # init: print title, clear, print description, clear, print have fun + copyright, clear, first door,  proceed to main gameplay loop
+    # init: print title, print description, clear, first door,  proceed to main gameplay loop
+    print("Welcome to Three Doors, a game by Felix Montanari - 2021")
+    print("In this game, you will be continually given the choice to enter one of three randomly generated doors, each with different amounts of enemies and loot. Luckily, you have very good eyes, and are able to come up with a great description of each of the doors, which will help guide your decision! The enemies in these rooms are the scariest of all, maths problems! So, make sure you choose wisely!")
+    input("Press ENTER to start!")
+    clear()
     mods = [0, 0, 0, 0]
     history = []
     lives = 10
+    print("You have 10 lives.")
+    print("You enter the dungeon of tropical geometry, fearing that the rumours of its depth being infinite are true.")
     #main loop
     while True:
         doors = generatedoors()
@@ -445,13 +451,9 @@ def mainfunction():
         result = rundoor(chce-1,mods,lives,doors,history)
         history.append(chce)
         mods = result[0]
-        if mods[2] >= 60:
-            mods[2] = 60
-        if mods[3] >= 60:
-            mods[3] = 60
         lives = result[1]
         for i in doors:
             del i
 
-if __name__ == '__main__':
+if __name__ == '__main__': # run the main functon
     mainfunction()
