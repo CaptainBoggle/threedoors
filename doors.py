@@ -325,7 +325,7 @@ def generatemaths(size, dif, livesleft):
                 print("Wrong! The correct answer was " + str(sol) + "\n")
                 lives = lives - 1
             print("You now have " + str(lives) + " lives left.\n")
-    clear()
+    clear() #F
     return lives
 
 
@@ -414,14 +414,12 @@ def rundoor(doorindex, modifiers, livesleft,currentdoors,his): # run the door
     if esize - modifiers[0] < 0 or edif - modifiers[1] < 0:
         print("This room appears to be free of any monsters...\n")
     else:
-        lives = generatemaths(math.floor((esize - modifiers[0]) / 10) + 1, math.floor((edif - modifiers[1]) / 10) + 1,
-                              lives)
+        lives = generatemaths(math.floor((esize - modifiers[0]) / 10) + 1, math.floor((edif - modifiers[1]) / 10) + 1,lives) #F
 
     if lives <= 0:
-        endgame(his)
+        endgame(his) #F
     else:
-        return generateloot(math.floor((ltamnt + modifiers[2]) / 10) + 1, math.floor((ltqual + modifiers[3]) / 10),
-                            modifiers, lives)
+        return generateloot(math.floor((ltamnt + modifiers[2]) / 10) + 1, math.floor((ltqual + modifiers[3]) / 10), modifiers, lives) #F
 
 def mainfunction():
     # init: print title, print description, clear, first door,  proceed to main gameplay loop
@@ -448,12 +446,16 @@ def mainfunction():
             print("That is not a door, please enter 1, 2 or 3.")
             chce=int(intput("Choice: "))
 
-        result = rundoor(chce-1,mods,lives,doors,history)
+        result = rundoor(chce-1,mods,lives,doors,history) #F
         history.append(chce)
-        mods = result[0]
-        lives = result[1]
-        for i in doors:
-            del i
+        try: # necessary as these things no longer work after game is ended.
+            mods = result[0]
+            lives = result[1]
+            for i in doors:
+                del i
+        except:
+            print("Thanks for playing!")
+            return
 
 if __name__ == '__main__': # run the main functon
-    mainfunction()
+    mainfunction() #F
