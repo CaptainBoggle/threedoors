@@ -438,6 +438,10 @@ def mainfunction():
         print("Or perhaps the third door, the "+doors[2].doordesc+"?")
         print("Please enter 1, 2, or 3. Prepare for the worst... Or the best!")
         chce=int(intput("Choice: "))
+        while chce not in [1,2,3]:
+            print("That is not a door, please enter 1, 2 or 3.")
+            chce=int(intput("Choice: "))
+
         result = rundoor(chce-1,mods,lives,doors,history)
         history.append(chce)
         mods = result[0]
